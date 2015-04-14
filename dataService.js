@@ -18,7 +18,7 @@ app.service('dataService', function(){
 	];
 
 	this.getData = function(){
-		return quotes; 
+		return quotes;
 	}
 
 	this.addData = function(quote){
@@ -32,8 +32,8 @@ app.service('dataService', function(){
 	}
 
 	this.removeData = function(quote){
-		for(var i = 0; i<= quotes.length; i++){
-			if(quote === quote.text){
+		for(var i = 0; i<quotes.length; i++){
+			if(quotes[i].text === quote){
 				console.log(i); 
 				quotes.splice(i, 1)
 			}

@@ -4,25 +4,69 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Quote Book</title>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/lumen/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 </head>
 <body ng-controller="mainCtrl">
 
-    <div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">QuoteBook</a>
+    </div>
 
-	<h1>Quotes</h1></br>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
 
-	<input ng-model="newPost.text" placeholer="Quote Text"></br>
+      </ul>
+      <form class="navbar-form navbar-left" role="search" ng-model="searchText">
+        <div class="form-group">
+          <input type="text" ng-model="searchText" class="form-control" placeholder="Search By Author">
 
-	<input ng-model="newPost.author" placeholer="Author"></br>
+          <input type="text" class="form-control" placeholder="Add Quote">
 
-	<button ng-click="add()">Add Quote</button></br>
 
-	<h2>All Quotes</h2>
-	<div class="panel" ng-repeat="quote in quotes">
-		"{{quote.text}}", by: "{{quote.author}}"
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="addPost()">Submit</button>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/about.html">About QuoteBook</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+	<div class="wrapper">
+	    <div>
+
+	<h2>Add Your Own Quote
+	<input type="checkbox" ng-model="checked" aria-label="Toggle ngHide"></h2><br/>
+
+
+	<div class="form-group">
+		<input class="control-label" ng-model="newPost.text" placeholer="Quote Text" ng-show="checked"></br>
+
+		<input class="control-label" ng-model="newPost.author" placeholer="Author" ng-show="checked"></br>
+
+		<button ng-show="checked" ng-click="addPost()">Add Quote</button></br>
 	</div>
 
+		<h2>All Quotes</h2>
+		
+		<div class="panel" ng-repeat="quote in quotes | filter:{author:searchText}">
+			<p>"{{quote.text}}", by: "{{quote.author}}" <i class="fa fa-trash-o" ng-click="removeData(quote.text)"> Delete</i></p>
+		</div>
+
+	</div>
 <!-- declar angular files --> 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 <script src="app.js"></script>

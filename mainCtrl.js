@@ -14,4 +14,9 @@ app.controller('mainCtrl', function($scope, dataService){
 
 	$scope.quotes = dataService.getData(); 
 
+	$scope.removeData = function(quote){
+		dataService.removeData(quote);
+		$scope.quotes = dataService.getData(); 
+	}
+
 });
