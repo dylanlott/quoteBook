@@ -4,7 +4,8 @@ var app = angular.module('quoteBook');
 
 app.service('dataService', function(){
 
-	console.log("service loaded"); 
+	console.log("dataService loaded, get ready to kick ass"); 
+	var error = "You need more data"; 
 
 	var quotes = [
 	    { text: 'Life isn\'t about getting and having, it\'s about giving and being.', author: 'Kevin Kruse'},
@@ -20,20 +21,23 @@ app.service('dataService', function(){
 		return quotes; 
 	}
 
-	this.addData = function(){
-		for(var i = 0; i<=arr.length; i++){
-			if(arr[i].text && arr[i].author){
-				//arr.push({text, author}); 
-			}
-			else{
-				alert("You need to add more data!"); 
-			}
+	this.addData = function(quote){
+		console.log("data pushed"); 
+		if(quote.author && quote.text){
+			quotes.push({"text": quote.text, "author": quote.author})
+		}
+		else{
+			return error; 
 		}
 	}
 
-	this.removeData = function(str){
-
+	this.removeData = function(quote){
+		for(var i = 0; i<= quotes.length; i++){
+			if(quote === quote.text){
+				console.log(i); 
+				quotes.splice(i, 1)
+			}
+		}
 	}
-
 
 });
