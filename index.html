@@ -5,10 +5,20 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Quote Book</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-
 </head>
 <body ng-controller="mainCtrl">
+
+    <div>
+	{{test}}
+
+	{{quotes}}
+
+	<textarea name="quote" ng-model="addData" placeholder="Quote to Add"></textarea>
+
+	<button ng-click="addData()">Add Quote</button>
+
+	</div>
+
 
 
 <!-- declar angular files --> 
